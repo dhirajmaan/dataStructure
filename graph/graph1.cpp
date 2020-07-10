@@ -82,4 +82,11 @@ int main()
     printBFS(edges, v, 0);
 
     //delete the memory;
+    for (int i = 0; i < v; i++)
+    {
+       delete[]edges[i];
+    }
+    delete[]edges;
+    delete[] visited;    
+
 }
