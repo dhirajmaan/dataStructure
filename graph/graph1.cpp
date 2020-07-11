@@ -1,62 +1,64 @@
 #include <iostream>
 #include <queue>
 using namespace std;
-void printDFS(int **edges, int v, int startingVertex, bool *visited)
+
+void printDFS(int **edges, int v, int sv, bool *visited)
 {
-    cout << startingVertex << endl;
-    visited[startingVertex] = true;
+    cout << sv << endl;
+    visited[sv] = true;
     for (int i = 0; i < v; i++)
     {
-        if (startingVertex == i)
+        if (sv == i)
         {
             continue;
         }
-        if (edges[startingVertex][i] == 1 && !visited[i])
+        if (edges[sv][i] == 1 && !visited[i])
         {
+
             printDFS(edges, v, i, visited);
         }
     }
 }
-void printBFS(int **edges, int v, int startingVertex)
+void printBFS(int **edges, int v, int sv)
 {
+    queue<int> pendingVertices;
     bool *visited = new bool[v];
     for (int i = 0; i < v; i++)
     {
         visited[i] = false;
     }
-    queue<int> pendingVertice;
 
-    pendingVertice.push(startingVertex);
-    visited[startingVertex] = true;
-    while (!pendingVertice.empty())
+    pendingVertices.push(sv);
+    visited[sv] = true;
+    while (!pendingVertices.empty())
     {
-        int currentVertices = pendingVertice.front();
-        cout<<currentVertices<<endl;
-        pendingVertice.pop();
+        int currentVertices = pendingVertices.front();
+        pendingVertices.pop();
+        cout << currentVertices << endl;
         for (int i = 0; i < v; i++)
         {
-            if(currentVertices==i){
-                continue;
-            }
-            if (edges[currentVertices][i] && !visited[i])
+            if (edges[currentVertices][i] == 1 && !visited[i])
             {
-                pendingVertice.push(i);
-                visited[i]=true;
+                if (sv == i)
+                {
+                    continue;
+                }
+                pendingVertices.push(i);
+                visited[i] = true;
             }
         }
     }
+    delete[] visited;
 }
 int main()
 {
-    int v;
-    cout << "enter no of vertices" << endl;
+    int v, e;
+    cout << "Enter the no of vertices" << endl;
     cin >> v;
-    int n;
     cout << "enter the no of edges" << endl;
-    cin >> n;
-    int from, to;
+    cin >> e;
     int **edges = new int *[v];
-    for (int i = 0; i < n; i++)
+    for (int i = 0; i < v; i++)
     {
         edges[i] = new int[v];
         for (int j = 0; j < v; j++)
@@ -64,13 +66,15 @@ int main()
             edges[i][j] = 0;
         }
     }
-    for (int i = 0; i < n; i++)
+    int from, to;
+    for (int i = 0; i < e; i++)
     {
-        cout << "enter the connecting edges from and to" << endl;
+        cout << "Enter the edges as from : to" << endl;
         cin >> from >> to;
         edges[from][to] = 1;
         edges[to][from] = 1;
     }
+
     bool *visited = new bool[v];
     for (int i = 0; i < v; i++)
     {
@@ -78,15 +82,14 @@ int main()
     }
     cout << "print DFS" << endl;
     printDFS(edges, v, 0, visited);
-    cout << "print BFS"<<endl;
+    cout << "printBFS" << endl;
     printBFS(edges, v, 0);
 
-    //delete the memory;
+    //deleteion
     for (int i = 0; i < v; i++)
     {
-       delete[]edges[i];
+        delete[] edges[i];
     }
-    delete[]edges;
-    delete[] visited;    
-
+    delete[] edges;
+    delete[] visited;
 }
