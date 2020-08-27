@@ -26,8 +26,8 @@ int lastIndex(int *arr, int size, int num)
 
 int main()
 {
-    int arr[] = {6, 5, 7, 8, 99, 5, 11};
-    int size = 7;
-    int num = 5;
+    int arr[] = {6, 6, 7, 8, 9, 3, 2, 6, 8, 9};
+    int size = 10;
+    int num = 9;
     cout << lastIndex(arr, size, num) << endl;
 }

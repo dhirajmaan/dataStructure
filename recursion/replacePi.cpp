@@ -1,43 +1,43 @@
 #include <iostream>
 using namespace std;
 
-int length(char *input)
+int length(char *input1)
 {
     int len = 0;
     int i = 0;
 
-    while (input[i] != '\0')
+    while (input1[i] != '\0')
     {
         len++;
         i++;
     }
     return len;
 }
-void replacePi(char *input)
+void replacePi(char *input1)
 {
-    if (input[0] == '\0')
+    if (input1[0] == '\0')
     {
         return;
     }
-    replacePi(input + 1);
+    replacePi(input1 + 1);
 
-    if (input[0] == 'p' && input[1] == 'i')
+    if (input1[0] == 'p' && input1[1] == 'i')
     {
-        int len = length(input);
+        int len = length(input1);
         for (int i = len - 1; i >= 2; i--)
         {
-            input[i + 2] = input[i];
+            input1[i + 2] = input1[i];
         }
-        input[0] = '3';
-        input[1] = '.';
-        input[2] = '1';
-        input[3] = '4';
+        input1[0] = '3';
+        input1[1] = '.';
+        input1[2] = '1';
+        input1[3] = '4';
     }
 }
 int main()
 {
-    char input[100];
-    cin >> input;
-    replacePi(input);
-    cout << input;
+    char input1[100];
+    cin >> input1;
+    replacePi(input1);
+    cout << input1;
 }

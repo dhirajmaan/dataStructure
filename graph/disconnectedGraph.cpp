@@ -36,7 +36,7 @@ void DFS(int **edges, int v)
 
     delete[] visited;
 }
-void printBFS(int **edges, int v, int sv,bool* visited)
+void printBFS(int **edges, int v, int sv, bool *visited)
 {
     queue<int> pendingVertices;
     pendingVertices.push(sv);
@@ -59,22 +59,22 @@ void printBFS(int **edges, int v, int sv,bool* visited)
             }
         }
     }
-    
 }
-void BFS(int ** edges,int v){
-    bool*visited=new bool[v];
+void BFS(int **edges, int v)
+{
+    bool *visited = new bool[v];
     for (int i = 0; i < v; i++)
     {
-        visited[i]=false;
+        visited[i] = false;
     }
-    for (int i = 0; i <v; i++)
+    for (int i = 0; i < v; i++)
     {
-        if(!visited[i]){
-            printBFS(edges,v,i,visited);
+        if (!visited[i])
+        {
+            printBFS(edges, v, i, visited);
         }
     }
-    
-    
+
     delete[] visited;
 }
 int main()

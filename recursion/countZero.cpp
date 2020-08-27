@@ -4,7 +4,7 @@ using namespace std;
 int countZero(int n)
 {
 
-    if (n <= 9)
+    if (n <= 9) //if n is a single digit no
     {
         if (n == 0)
         {
