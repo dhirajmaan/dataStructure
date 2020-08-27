@@ -23,10 +23,16 @@ void replaceX(char *input)
     if (input[0] == 'x')
     {
         //int len = length(input);
-        for (int i = 0; input[i] != '\0'; i++)
+        int i = 1;
+        for (; input[i] != '\0'; i++)
         {
-            input[i] = input[i + 1];
+            input[i - 1] = input[i];
         }
+        input[i - 1] = input[i]; //to copy null chracter also
+
+        remove(input); /*if the string have 2 'x' simultaneously xxwteyg
+                          first and then call to input+1 and the x will be remaning 
+                          so we need to call removeX() on the same string again*/
     }
     else
     {
